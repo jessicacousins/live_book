@@ -82,12 +82,26 @@ function goToLastPage() {
   renderStory();
 }
 
+// ! includes the authors name in the text to speech
+// function readStory() {
+//   const utterance = new SpeechSynthesisUtterance();
+//   const fullText = storyEntries
+//     .map((e) => `${e.author} said: ${e.text}`)
+//     .join(". ");
+//   utterance.text = fullText;
+
+//   utterance.onboundary = () => {
+//     storyContainer.scrollTop = storyContainer.scrollHeight;
+//   };
+
+//   speechSynthesis.speak(utterance);
+// }
+
+// ! story text to speech only
 function readStory() {
   const utterance = new SpeechSynthesisUtterance();
-  const fullText = storyEntries
-    .map((e) => `${e.author} said: ${e.text}`)
-    .join(". ");
-  utterance.text = fullText;
+  const storyOnly = storyEntries.map((e) => e.text).join(" ");
+  utterance.text = storyOnly;
 
   utterance.onboundary = () => {
     storyContainer.scrollTop = storyContainer.scrollHeight;
