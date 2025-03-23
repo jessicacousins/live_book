@@ -3,11 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Once Upon a Time</title>
+    <title>Storybook Maker - Team Builder</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div class="particles"></div>
+    <div class="candlelight"></div>
     <div class="book">
+      <h3 class="instructions">
+        ✨ A tale waits to be told… Speak or scribe your passage below. The
+        world you shape shall echo through every page. Heroes, beasts, and
+        secrets await—written not by one, but by many. <br />
+        Each entry weaves into the next, will your name be among the authors of
+        legend?<br />
+        <strong>The magic grows with each voice—make yours part of it.</strong>
+      </h3>
+
       <h1 class="title">Once Upon a Time...</h1>
       <div id="story" class="story"></div>
 
@@ -21,7 +32,7 @@
         <button onclick="readStory()">Read Story</button>
       </div>
     </div>
-    
+
     <div class="candlelight"></div>
     <audio
       id="pageSound"
@@ -30,5 +41,17 @@
     ></audio>
 
     <script src="script.js"></script>
+
+    <script>
+      const particleContainer = document.querySelector(".particles");
+
+      for (let i = 0; i < 40; i++) {
+        const particle = document.createElement("span");
+        particle.style.left = `${Math.random() * 100}vw`;
+        particle.style.animationDuration = `${8 + Math.random() * 10}s`;
+        particle.style.animationDelay = `${Math.random() * 5}s`;
+        particleContainer.appendChild(particle);
+      }
+    </script>
   </body>
 </html>

@@ -32,8 +32,13 @@ function renderStory() {
   const pageEntries = storyEntries.slice(start, end);
 
   pageEntries.forEach((entry, index) => {
+    const container = document.createElement("div");
+    container.className = "entry";
+
     const p = document.createElement("p");
-    p.textContent = entry;
+    p.innerHTML = `<strong>${entry.author || "Unknown Author"}</strong> (${
+      entry.timestamp
+    })<br>${entry.text}`;
 
     const delBtn = document.createElement("button");
     delBtn.textContent = "🗑️";
@@ -46,8 +51,9 @@ function renderStory() {
       renderStory();
     };
 
-    p.appendChild(delBtn);
-    storyContainer.appendChild(p);
+    container.appendChild(p);
+    container.appendChild(delBtn);
+    storyContainer.appendChild(container);
   });
 
   playPageSound();
@@ -61,7 +67,10 @@ function playPageSound() {
 function addToStory() {
   const addition = input.value.trim();
   if (addition) {
-    storyEntries.push(addition);
+    const author =
+      prompt("Enter your name (or alias):", "Anonymous") || "Anonymous";
+    const timestamp = new Date().toLocaleString();
+    storyEntries.push({ text: addition, author, timestamp });
     saveStory();
     goToLastPage();
     input.value = "";
@@ -74,8 +83,16 @@ function goToLastPage() {
 }
 
 function readStory() {
-  const fullStory = storyEntries.join(" ");
-  const utterance = new SpeechSynthesisUtterance(fullStory);
+  const utterance = new SpeechSynthesisUtterance();
+  const fullText = storyEntries
+    .map((e) => `${e.author} said: ${e.text}`)
+    .join(". ");
+  utterance.text = fullText;
+
+  utterance.onboundary = () => {
+    storyContainer.scrollTop = storyContainer.scrollHeight;
+  };
+
   speechSynthesis.speak(utterance);
 }
 
