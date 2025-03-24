@@ -1,6 +1,7 @@
 const storyContainer = document.getElementById("story");
 const input = document.getElementById("input");
 const pageSound = document.getElementById("pageSound");
+let currentUtterance = null;
 
 let storyEntries = [];
 let currentPage = 0;
@@ -19,11 +20,13 @@ function saveStory() {
 }
 
 function renderStory() {
-  storyContainer.classList.add("page-enter");
+  const totalPages = Math.ceil(storyEntries.length / entriesPerPage);
+  document.getElementById("pageInfo").textContent = `Page ${
+    currentPage + 1
+  } of ${totalPages}`;
 
-  setTimeout(() => {
-    storyContainer.classList.remove("page-enter");
-  }, 600);
+  storyContainer.classList.add("page-enter");
+  setTimeout(() => storyContainer.classList.remove("page-enter"), 600);
 
   storyContainer.innerHTML = "";
 
@@ -99,6 +102,10 @@ function goToLastPage() {
 
 // ! story text to speech only
 function readStory() {
+  if (speechSynthesis.speaking) {
+    speechSynthesis.cancel();
+  }
+
   const utterance = new SpeechSynthesisUtterance();
   const storyOnly = storyEntries.map((e) => e.text).join(" ");
   utterance.text = storyOnly;
@@ -107,7 +114,15 @@ function readStory() {
     storyContainer.scrollTop = storyContainer.scrollHeight;
   };
 
+  currentUtterance = utterance;
   speechSynthesis.speak(utterance);
+}
+
+function stopReading() {
+  if (speechSynthesis.speaking) {
+    speechSynthesis.cancel();
+    currentUtterance = null;
+  }
 }
 
 function startSpeech() {
