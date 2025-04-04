@@ -71,7 +71,7 @@ function addToStory() {
   const addition = input.value.trim();
   if (addition) {
     const author =
-      prompt("Enter your name (or alias):", "Anonymous") || "Anonymous";
+      prompt("Enter your name:", "Colleague Name Here") || "Colleague Name";
     const timestamp = new Date().toLocaleString();
     storyEntries.push({ text: addition, author, timestamp });
     saveStory();
@@ -164,3 +164,29 @@ function prevPage() {
 }
 
 loadStory();
+
+// ! PDF
+async function downloadPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  let y = 10;
+
+  doc.setFont("Times", "Normal");
+  doc.setFontSize(12);
+
+  storyEntries.forEach((entry, index) => {
+    const text = `${entry.author || "Unknown Author"} (${entry.timestamp}): ${
+      entry.text
+    }`;
+    const lines = doc.splitTextToSize(text, 180);
+    if (y + lines.length * 10 > 280) {
+      doc.addPage();
+      y = 10;
+    }
+    doc.text(lines, 10, y);
+    y += lines.length * 10;
+  });
+
+  doc.save("ATI_Family_Storybook.pdf");
+}

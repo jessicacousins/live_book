@@ -15,9 +15,9 @@ body {
   text-align: center;
   font-size: 1rem;
   margin-bottom: 0.8rem;
-  color: #6b4e2f;
+  color: #ffeee5;
   font-weight: bold;
-  background: rgba(255, 255, 240, 0.5);
+  background: rgba(91, 18, 124, 0.9);
   border: 1px solid #e1c192;
   border-radius: 8px;
   padding: 0.3rem 0.8rem;
@@ -95,12 +95,13 @@ body {
 }
 
 .instructions {
-  text-align: center;
-  margin: 1.5rem auto;
+  position: relative;
+  top: -40px;
+  margin: 0 auto 10px;
   padding: 1rem;
   font-size: 1.2rem;
   font-weight: 700;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.8px;
   line-height: 1.6;
   background: rgba(248, 218, 95, 0.6);
   backdrop-filter: blur(6px);
@@ -109,16 +110,17 @@ body {
   box-shadow: 0 0 16px rgba(255, 214, 145, 0.2);
   color: #000000;
   max-width: 680px;
+  text-align: center;
 }
 
-.instructions strong {
+/* .instructions strong {
   display: block;
   margin-top: 1rem;
   font-size: 1.2rem;
   color: #070707;
-  font-weight: 900;
+  font-weight: 400;
   text-shadow: 1px 1px #000000;
-}
+} */
 
 .book {
   max-width: 860px;
@@ -164,6 +166,7 @@ body {
   padding: 0.8rem;
   border-radius: 8px;
   font-weight: 900;
+  margin-top: 10px;
 }
 
 .story {
@@ -190,6 +193,7 @@ body {
   margin: 0;
   line-height: 1.5;
   font-size: 1rem;
+  letter-spacing: 0.8px;
   animation: fadeInScroll 1s ease-out;
 }
 
@@ -216,6 +220,7 @@ textarea {
   padding: 1rem;
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.1);
   margin-top: 1.5rem;
+  letter-spacing: 0.8px;
 }
 
 textarea:focus {
@@ -296,4 +301,80 @@ footer {
   margin-top: 2rem;
   letter-spacing: 1.5px;
   text-shadow: 0 0 4px #9f5aff;
+}
+
+.buttons button:last-child {
+  background: linear-gradient(to bottom, #d4b1ff, #5c1aa7);
+  border: 2px solid #6b2eb5;
+  color: #fff1ff;
+  font-weight: bold;
+  box-shadow: 0 0 6px #a373d6, 0 0 12px #8248c4,
+    0 0 20px rgba(255, 255, 255, 0.2), inset 0 0 6px rgba(255, 255, 255, 0.2);
+}
+
+/* Scrollbar styles */
+.story::-webkit-scrollbar {
+  width: 12px;
+}
+
+.story::-webkit-scrollbar-track {
+  background: rgba(45, 10, 60, 0.3);
+  border-radius: 6px;
+  box-shadow: inset 0 0 6px rgba(128, 0, 128, 0.2);
+}
+
+.story::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #a678dd, #5e2e91);
+  border-radius: 6px;
+  box-shadow: 0 0 8px 2px #c79ff6, 0 0 12px 4px #e6d3ff;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.story::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #c79ff6, #8248c4);
+  box-shadow: 0 0 10px 3px #e6d3ff, 0 0 16px 6px #fff1ff;
+}
+
+.story:hover {
+  box-shadow: inset 0 0 20px rgba(180, 130, 255, 0.3);
+}
+
+textarea:hover {
+  box-shadow: 0 0 12px rgba(208, 149, 255, 0.9),
+    /* bright violet edge glow */ 0 0 18px rgba(202, 129, 255, 0.6),
+    /* inner haze */ 0 0 30px rgba(255, 255, 255, 0.3),
+    /* soft white radiant halo */ 0 0 45px rgba(192, 122, 255, 0.5),
+    /* extended purple aura */ inset 0 0 20px rgba(255, 245, 255, 0.25); /* glowing from the inside */
+  border-color: #e9c6ff; /* gentle border shimmer */
+  transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease;
+}
+
+textarea:hover {
+  box-shadow: 0 0 12px rgba(208, 149, 255, 0.9),
+    /* bright violet edge glow */ 0 0 18px rgba(202, 129, 255, 0.6),
+    /* inner haze */ 0 0 30px rgba(255, 255, 255, 0.3),
+    /* soft white radiant halo */ 0 0 45px rgba(192, 122, 255, 0.5),
+    /* extended purple aura */ inset 0 0 20px rgba(255, 245, 255, 0.25); /* glowing from the inside */
+  border-color: #e9c6ff; /* gentle border shimmer */
+  transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease;
+}
+
+textarea:hover {
+  animation: glamGlow 1.6s ease-in-out infinite alternate;
+  /* ... include the glowing box-shadow above too */
+}
+
+@keyframes glamGlow {
+  from {
+    box-shadow: 0 0 12px rgba(208, 149, 255, 0.9),
+      0 0 18px rgba(202, 129, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.3),
+      0 0 45px rgba(192, 122, 255, 0.5),
+      inset 0 0 20px rgba(255, 245, 255, 0.25);
+  }
+  to {
+    box-shadow: 0 0 18px rgba(255, 179, 255, 1),
+      0 0 24px rgba(240, 159, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.5),
+      0 0 60px rgba(220, 120, 255, 0.6),
+      inset 0 0 28px rgba(255, 255, 255, 0.35);
+  }
 }

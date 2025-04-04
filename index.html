@@ -30,17 +30,15 @@
     <div class="particles"></div>
     <div class="candlelight"></div>
     <div class="book">
+      <p class="title">Share your experience</p>
       <h3 class="instructions">
-        Ah, there you are, just in time. I’m Miss Goldshire — caretaker of the
-        old sailors tales and keeper of ancient secret texts. The library
-        stirred the moment you arrived… pages twitch, ink warms, and the stories
-        began to weave.
-        <p>Your move, dear author. What happens next?</p>
-        <hr />
-        <strong>The magic grows with each voice—make yours part of it.</strong>
+        <p>
+          <strong
+            >Press the 🎤 mic button for speech to text, or ⌨️ type it below.
+            <p>Then press ✅ submit to add your memory to the book</p></strong
+          >
+        </p>
       </h3>
-
-      <h1 class="title">Once Upon a Time...</h1>
 
       <div id="pageInfo" class="page-info"></div>
 
@@ -48,18 +46,19 @@
 
       <textarea
         id="input"
-        placeholder="Speak your story or type here..."
+        placeholder="Click Here, then ⌨️ Type... How is American Training like your family?"
       ></textarea>
       <div class="buttons">
-        <button onclick="startSpeech()">Speak</button>
-        <button onclick="addToStory()">Add to Story</button>
-        <button onclick="readStory()">Read Story</button>
-        <button onclick="stopReading()">Stop Reading</button>
+        <button onclick="startSpeech()">🎤 Mic</button>
+        <button onclick="addToStory()">✅ Submit</button>
+        <button onclick="readStory()">🔊 Read Story</button>
+        <button onclick="stopReading()">🔇 Stop Reading</button>
+        <button onclick="downloadPDF()">⬇️ Download as PDF</button>
       </div>
     </div>
 
     <div class="candlelight"></div>
-    <footer>© 2025 JMC — All rights reserved.</footer>
+    <footer>© 2025 - Present. JMC — All rights reserved.</footer>
 
     <audio
       id="pageSound"
@@ -80,5 +79,7 @@
         particleContainer.appendChild(particle);
       }
     </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   </body>
 </html>
